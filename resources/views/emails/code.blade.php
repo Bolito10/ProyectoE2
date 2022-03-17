@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Hola Marisol</title>
+    <title>Hola</title>
 </head>
 <body>
     <h1>{{ $details['title'] }}</h1>
