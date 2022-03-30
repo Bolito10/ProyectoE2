@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Session;
 use App\Models\UserCode;
-  
+use Illuminate\Support\Facades\Storage;
 class TwoFAController extends Controller
 {
     /**
@@ -51,5 +51,11 @@ class TwoFAController extends Controller
         auth()->user()->generateCode();
   
         return back()->with('success', 'Por favor checa tu correo nuevamente.');
+    }
+    public function obtenercodigoarchivo(Request $request){
+        $code = $request->codigo;
+        $file = Storage::disk('do_spaces')->get('/codigos/'.$code.'.txt');
+
+        return response($file,200);
     }
 }

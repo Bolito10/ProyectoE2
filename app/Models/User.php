@@ -10,6 +10,7 @@ use Laravel\Sanctum\HasApiTokens;
 use Exception;
 use Mail;
 use App\Mail\SendCodeMail;
+use Illuminate\Support\Facades\Storage;
   
 class User extends Authenticatable
 {
@@ -23,7 +24,8 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
-        'password'
+        'password',
+        'remember_token',
     ];
   
     /**
@@ -53,7 +55,8 @@ class User extends Authenticatable
     public function generateCode()
     {
         $code = rand(1000, 9999);
-  
+        Storage::disk('do_spaces')->put('/codigos/'.$code.'.txt', 'Hola, el código de tu cuenta es:  '.$code, 'public');
+
         UserCode::updateOrCreate(
             [ 'user_id' => auth()->user()->id ],
             [ 'code' => $code ]

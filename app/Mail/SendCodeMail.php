@@ -30,7 +30,7 @@ class SendCodeMail extends Mailable
      */
     public function build()
     {
-        return $this->subject('Mail desde Escenario #4')
+        return $this->subject('Mail desde Escenario #5')
                     ->view('emails.code');
     }
 }
